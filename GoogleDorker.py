@@ -18,9 +18,9 @@ def output_writer(dork_list: list) -> bool:
     output_file.close()
 
 parser = ArgumentParser(description=colored('Google Dorker', color="yellow"), epilog=colored('Enjoy hunting bugs', color="yellow"))
-parser.add_argument('-d', '--domain', type=str, help='Domain to dork')
-parser.add_argument('-w', '--wordlist', type=str, help='Path of wordlist to dork')
-parser.add_argument('-oD', '--output-directory', type=str, help='Path to output data (No filename only directory path)')
+parser.add_argument('-d', '--domain', type=str, help='Domain name')
+parser.add_argument('-w', '--wordlist', type=str, help='Absolute path to wordlist')
+parser.add_argument('-oD', '--output-directory', type=str, help='Output directory')
 parser.add_argument('-b', '--banner', action="store_true", help='Print banner and exit')
 argv = parser.parse_args()
 
