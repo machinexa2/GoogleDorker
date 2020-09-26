@@ -1,42 +1,27 @@
 #!/usr/bin/python3
-from argparse import ArgumentParser
 from termcolor import colored
+from argparse import ArgumentParser
 
-from lib.ColoredObject import Color as Cobj
 from lib.PathFunctions import PathFunction
 from lib.GoogleDork import GoogleDork
-
-def banner():
-    from pyfiglet import print_figlet as puff
-    puff('Google Dorker', font='larry3d', colors='BLUE')
-    print(colored("An automated google dorking tool, just feed wordlist and see the magic!", color='red', attrs=['bold']))
-
-def output_writer(dork_list: list) -> bool:
-    output_file = open(str(fpath.slasher(argv.output_directory) + fpath.payloader(argv.domain) + '.google'), 'a')
-    for dork_line in dork_list:
-        output_file.write(dork_line)
-    output_file.close()
+from lib.Functions import starter
 
 parser = ArgumentParser(description=colored('Google Dorker', color="yellow"), epilog=colored('Enjoy hunting bugs', color="yellow"))
+input_group = parser.add_mutually_exclusive_group()
 parser.add_argument('-d', '--domain', type=str, help='Domain name')
 parser.add_argument('-w', '--wordlist', type=str, help='Absolute path to wordlist')
-parser.add_argument('-oD', '--output-directory', type=str, help='Output directory')
+input_group.add_argument('-oD', '--output-directory', type=str, help='Output directory')
+input_group.add_argument('-o', '--output', type=str, help='Output file')
 parser.add_argument('-b', '--banner', action="store_true", help='Print banner and exit')
 argv = parser.parse_args()
 
-
-ColorObject = Cobj()
-fpath = PathFunction()
-GoogleApp = GoogleDork(argv.domain)
-if argv.banner:
-    banner()
-if not argv.wordlist or not argv.output_directory or not argv.domain:
-    print('{} Use --help'.format(ColorObject.bad))
-    exit()
+starter(argv)
+dork_object = GoogleDork(argv.domain)
 input_wordlist = [line.rstrip('\n') for line in open(argv.wordlist)]
 
 def main():
     for line in input_wordlist:
-        result = GoogleApp.search(line)
+        result = dork_object.search(line)
         output_writer(result)
-main()
+if __name__ == "__main__":
+    main()
