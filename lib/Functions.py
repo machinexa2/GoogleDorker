@@ -22,6 +22,9 @@ def output_writer(filename, dork_list: list) -> bool:
 def starter(argv):
     if argv.banner:
         banner()
-    if not argv.wordlist or not argv.output_directory or not argv.domain:
+    if argv.output_directory:
+        if not argv.domain:
+            print(f'{ColorObj.bad} Output directory provided but not domain!')
+    if not argv.wordlist or not argv.domain:
         print('{} Use --help'.format(ColorObj.bad))
         exit()
