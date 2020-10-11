@@ -7,8 +7,8 @@ def banner():
     print(colored("An automated google dorking tool, just feed wordlist and see the magic!", color='red', attrs=['bold']))
 
 def output_directory_writer(filepath, filename, dork_list: list) -> bool:
-    FPathApp = PathFunction()
-    output_file = open(FPathApp.slasher(filepath) + FPathApp.payloader(filepath) + '.google', 'a')
+    path_fn = PathFunction()
+    output_file = open(path_fn.slasher(filepath) + path_fn.payloader(filepath) + '.google', 'a')
     for dork_line in dork_list:
         output_file.write(dork_line)
     output_file.close()
