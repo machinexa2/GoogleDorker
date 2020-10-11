@@ -2,8 +2,8 @@
 from termcolor import colored
 from argparse import ArgumentParser
 
+from lib.Engine import Engine
 from lib.PathFunctions import PathFunction
-from lib.GoogleDork import GoogleDork
 from lib.Functions import starter, output_directory_writer, output_writer
 
 parser = ArgumentParser(description=colored('Google Dorker', color="yellow"), epilog=colored('Enjoy hunting bugs', color="yellow"))

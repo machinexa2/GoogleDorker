@@ -1,10 +1,12 @@
+from termcolor import colored
+
 from lib.Globals import ColorObj
 from lib.PathFunctions import PathFunction
 
 def banner():
-    from pyfiglet import print_figlet as puff
-    puff('Google Dorker', font='larry3d', colors='BLUE')
-    print(colored("An automated google dorking tool, just feed wordlist and see the magic!", color='red', attrs=['bold']))
+    banner = '\x1b[5m\x1b[1m\x1b[40m\x1b[31m   ______                  __        ____             __            \n  / ____/___  ____  ____ _/ /__     / __ \\____  _____/ /_____  _____\n / / __/ __ \\/ __ \\/ __ `/ / _ \\   / / / / __ \\/ ___/ //_/ _ \\/ ___/\n/ /_/ / /_/ / /_/ / /_/ / /  __/  / /_/ / /_/ / /  / ,< /  __/ /    \n\\____/\\____/\\____/\\__, /_/\\___/  /_____/\\____/_/  /_/|_|\\___/_/     \n                 /____/                                             \n\x1b[0m'
+    print(banner)
+    print(colored("Dork to discover vulnerabilites and secrets!", color='red', attrs=['bold']))
 
 def output_directory_writer(filepath, filename, dork_list: list) -> bool:
     path_fn = PathFunction()
