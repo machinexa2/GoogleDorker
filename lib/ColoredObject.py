@@ -1,12 +1,7 @@
-from termcolor import colored as cat
 class Color:
     def __init__(self):
-        self.colors = ['information', 'good', 'bad']
-        self.information = cat('[!]', color='yellow')
-        self.good = cat('[+]', color='green')
-        self.bad = cat('[-]', color='red')
-    
-    def list(self):
-        for color in self.colors:
-            print('self' + '.' + color + '=' + eval('self' + '.' + color))
-
+        self.colors = ['information', 'good', 'bad', 'other']
+        self.information = '\x1b[33m[!]\x1b[0m'
+        self.good = '\x1b[32m[+]\x1b[0m'
+        self.bad = '\x1b[31m[-]\x1b[0m'
+        self.other = '\x1b[34m[*]\x1b[0m'
