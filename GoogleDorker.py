@@ -18,7 +18,7 @@ argv = parser.parse_args()
 
 starter(argv)
 dork_object = GoogleDork(argv.domain)
-input_wordlist = [line.rstrip('\n') for line in open(argv.wordlist)]
+input_wordlist = (line.rstrip('\n') for line in open(argv.wordlist) if line)
 
 def main():
     for line in input_wordlist:
