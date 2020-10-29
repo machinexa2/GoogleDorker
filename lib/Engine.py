@@ -1,10 +1,10 @@
 from time import sleep
 from requests import get 
+from random import randint
 from bs4 import BeautifulSoup
 from termcolor import colored
-from random import randint as ri
 
-from lib.Globals import ColorObj
+from lib.Globals import Color
 
 class Engine:
     def __init__(self, domain):
@@ -18,8 +18,8 @@ class Engine:
         URL = "https://google.com/search?q={}".format(const_query)
         headers = {"user-agent": self.U_A}
         response = get(URL, headers=headers)
-        print("{} Trying this payload after sleeping 7-15s: {}".format(ColorObj.information, colored(URL.split('?')[-1][2:], color='cyan')))
-        sleep(ri(7,15))
+        print("{} Trying this payload after sleeping 7-15s: {}".format(Color.information, colored(URL.split('?')[-1][2:], color='cyan')))
+        sleep(randint(7,15))
         if response.status_code == 200:
             soup = BeautifulSoup(response.content, "html.parser")
             for go_get in soup.find_all('div', class_='r'):
@@ -27,9 +27,9 @@ class Engine:
                 if anchors:
                     link = anchors[0]['href']
                     title = go_get.find('h3').text
-                    print("{} Obtained {} from dork {}".format(ColorObj.good, colored(title, color='cyan'), colored(query, color='cyan')))
+                    print("{} Obtained {} from dork {}".format(Color.good, colored(title, color='cyan'), colored(query, color='cyan')))
                     returner.append("Title:{}, Link:{}, Dork:{}\n".format(title, link, query))
         else:
-            print("{} Sleeping due to error for 30-40s".format(ColorObj.bad))
-            sleep(ri(30,40))
+            print("{} Sleeping due to error for 30-40s".format(Color.bad))
+            sleep(randint(30,40))
         return returner
